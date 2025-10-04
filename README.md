@@ -1,73 +1,150 @@
-# Welcome to your Lovable project
+# Bouch Auto - Catalogue Vitrine
 
-## Project info
+Application front moderne de catalogue vitrine pour accessoires et décorations automobiles.
 
-**URL**: https://lovable.dev/projects/b97341c5-51b6-4337-bede-8a76c38ed489
+## 🚀 Démarrage rapide
 
-## How can I edit this code?
+```bash
+# Installation des dépendances
+npm install
 
-There are several ways of editing your application.
-
-**Use Lovable**
-
-Simply visit the [Lovable Project](https://lovable.dev/projects/b97341c5-51b6-4337-bede-8a76c38ed489) and start prompting.
-
-Changes made via Lovable will be committed automatically to this repo.
-
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
+# Lancement en développement
 npm run dev
+
+# Build de production
+npm run build
+
+# Prévisualisation du build
+npm run preview
 ```
 
-**Edit a file directly in GitHub**
+## 📁 Structure du projet
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+```
+src/
+├── assets/              # Images et ressources statiques
+├── components/
+│   ├── layout/         # Header, Footer
+│   ├── products/       # ProductCard, ProductGrid, ProductFilters
+│   └── ui/             # Composants shadcn-ui
+├── data/
+│   └── mockData.ts     # Données mock (temporaire)
+├── lib/
+│   └── api.ts          # Service API avec mock/real toggle
+├── pages/
+│   ├── Index.tsx       # Page d'accueil
+│   ├── CategoryPage.tsx
+│   ├── ProductPage.tsx
+│   ├── SearchPage.tsx
+│   └── NotFound.tsx
+└── types/
+    └── product.ts      # Types TypeScript
+```
 
-**Use GitHub Codespaces**
+## 🎨 Features
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+✅ **Pages & Navigation**
+- Accueil avec hero, nouveautés et catégories
+- Pages catégories avec filtres, tri et pagination
+- Fiches produits détaillées avec galerie
+- Recherche globale avec filtres
+- 404 stylisée
 
-## What technologies are used for this project?
+✅ **Composants réutilisables**
+- Cards produits avec badges (Nouveau, Best-seller)
+- Filtres latéraux (accordéons)
+- Header responsive avec recherche
+- Footer complet
 
-This project is built with:
+✅ **SEO optimisé**
+- Meta tags par page
+- Open Graph tags
+- Sitemap.xml
+- Robots.txt
+- Sémantique HTML
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+✅ **Accessibilité & UX**
+- Navigation clavier
+- Contrastes corrects
+- Alt text sur images
+- Responsive mobile-first
+- Transitions fluides
 
-## How can I deploy this project?
+## 🔌 Intégration API
 
-Simply open [Lovable](https://lovable.dev/projects/b97341c5-51b6-4337-bede-8a76c38ed489) and click on Share -> Publish.
+### Configuration
 
-## Can I connect a custom domain to my Lovable project?
+1. Copier `.env.example` vers `.env`:
+```bash
+cp .env.example .env
+```
 
-Yes, you can!
+2. Configurer les variables:
+```env
+NEXT_PUBLIC_API_BASE_URL=https://your-api.com
+USE_MOCK=false
+```
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+### Endpoints API attendus
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+- `GET /api/v1/categories` - Liste des catégories
+- `GET /api/v1/products?search=&category=&tags[]=&visible=1&featured=1&page=1&per_page=12&sort_by=newest` - Liste produits avec filtres
+- `GET /api/v1/products/{slug}` - Détail produit
+- `GET /api/v1/categories/{slug}` - Détail catégorie
+
+### Format de réponse
+
+```typescript
+// GET /api/v1/products
+{
+  "data": Product[],
+  "total": number,
+  "page": number,
+  "perPage": number,
+  "totalPages": number
+}
+```
+
+## 📝 Données Mock
+
+Les données mock sont définies dans `src/data/mockData.ts`.
+Pour basculer entre mock et API réelle, modifier `USE_MOCK` dans `src/lib/api.ts`.
+
+## 🎨 Design System
+
+Le design system est défini dans:
+- `src/index.css` - Variables CSS (couleurs, ombres, transitions)
+- `tailwind.config.ts` - Configuration Tailwind
+
+**Palette:**
+- Primary: Anthracite sophistiqué
+- Accent: Rouge sportif dynamique
+- Background: Gris très clair / Blanc
+
+## 🧪 Scripts disponibles
+
+- `npm run dev` - Démarre le serveur de développement
+- `npm run build` - Build de production
+- `npm run preview` - Prévisualisation du build
+- `npm run lint` - Linter le code
+
+## 📦 Technologies
+
+- **React 18** + **TypeScript**
+- **Vite** - Build tool ultra-rapide
+- **Tailwind CSS** - Styling utility-first
+- **shadcn-ui** - Composants UI
+- **React Router** - Navigation
+- **TanStack Query** - State management
+
+## 🚧 Prochaines étapes
+
+1. Remplacer les données mock par l'API réelle
+2. Ajouter la pagination/infinite scroll
+3. Implémenter les tests
+4. Optimiser les images (WebP, lazy loading)
+5. Ajouter l'i18n pour multi-langue
+
+## 📄 License
+
+MIT - Bouch Auto 2025
